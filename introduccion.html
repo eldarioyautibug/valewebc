@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Introducción al análisis estadístico de los arrendamientos de petróleo y gas en Kansas: planteamiento del problema, ubicación geográfica y objetivos." />
+  <meta name="theme-color" content="#0c0f14" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/087dfb62b8.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <title>Introducción | Arrendamientos de Petróleo y Gas en Kansas</title>
+</head>
+
+<body data-page="introduccion">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <nav class="breadcrumb"><a href="index.html">Inicio</a><i class="fas fa-chevron-right"></i>Introducción</nav>
+        <p class="eyebrow">Contexto del proyecto</p>
+        <h1 data-i18n="t_intro_hero">Introducción al <em>análisis</em></h1>
+        <p>Planteamiento del problema, mapa de ubicación geográfica y objetivos del análisis estadístico de los arrendamientos de petróleo y gas en Kansas.</p>
+      </div>
+    </section>
+
+    <section class="section" id="problema">
+      <div class="section-wrap">
+        <p class="eyebrow">01 · Planteamiento</p>
+        <h2 class="section-title">Planteamiento del problema</h2>
+        <div class="prose reveal">
+          <p>
+            Los arrendamientos de petróleo y gas en Kansas son concesiones donde propietarios de
+            tierras ceden derechos mineros para la exploración y producción de hidrocarburos.
+            Aplicando métodos estadísticos, este proyecto analiza su distribución, estado operativo
+            y tendencias para comprender mejor la gestión de estos recursos energéticos.
+          </p>
+          <p style="font-style:italic; font-size:.95rem;">
+            Datos abiertos de arrendamientos de petróleo y gas publicados por el Kansas Geological
+            Survey (KGS) a través de ArcGIS Hub.
+          </p>
+        </div>
+        <div class="btn-row">
+          <a class="btn-outline" href="https://kgs-gis-data-and-maps-ku.hub.arcgis.com/datasets/KU::oil-and-gas-leases-1/about" target="_blank" rel="noopener noreferrer"><i class="fas fa-database"></i> Dataset</a>
+          <a class="btn-outline" href="https://drive.google.com/file/d/1LLzQ2auH5GczVqm5dj5168UI8oQvP4cO/view?usp=sharing" target="_blank" rel="noopener noreferrer"><i class="fab fa-google-drive"></i> Dataset Limpio</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cream" id="mapa-geografico">
+      <div class="section-wrap">
+        <p class="eyebrow">02 · Ubicación</p>
+        <h2 class="section-title">Ubicación geográfica</h2>
+        <p class="section-intro">Visualización del área de estudio de las concesiones de petróleo y gas en el estado de Kansas.</p>
+        <div class="frame reveal">
+          <div class="frame-bar">
+            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="frame-url">kgs.ku.edu/oil-gas-leases/kansas</span>
+          </div>
+          <iframe src="https://drive.google.com/file/d/1UubZHyIi3xUyY4K8g08JQX499BrzzgMq/preview" style="height:600px;" title="Ubicación geográfica"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="objetivos">
+      <div class="section-wrap">
+        <p class="eyebrow">03 · Objetivos</p>
+        <h2 class="section-title">Objetivos del análisis</h2>
+        <div class="obj-grid">
+          <div class="obj-card reveal">
+            <div class="obj-icon"><i class="fas fa-bullseye"></i></div>
+            <h3>Objetivo general</h3>
+            <p>
+              Aplicar la estadística y técnicas de Machine Learning para analizar los arrendamientos
+              de petróleo y gas registrados en Kansas, mediante el uso de herramientas computacionales.
+            </p>
+          </div>
+          <div class="obj-card reveal">
+            <div class="obj-icon" style="background:var(--teal);color:#fff;"><i class="fas fa-list-check"></i></div>
+            <h3>Objetivos específicos</h3>
+            <ul class="obj-list">
+              <li><i class="fas fa-check"></i> Conocer la situación actual de los arrendamientos a través de sus características más importantes y medidas estadísticas.</li>
+              <li><i class="fas fa-check"></i> Emplear un modelo de probabilidad para establecer conclusiones sobre el estado, la extensión y la localización a partir de los resultados de muestra.</li>
+              <li><i class="fas fa-check"></i> Deducir relaciones entre variables del registro del Kansas Geological Survey con el fin de realizar estimaciones.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/main.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Modelos de regresión sobre los arrendamientos de petróleo y gas en Kansas: regresiones simples (lineal, potencial, exponencial, logarítmica, polinómica) y regresión múltiple 3D." />
+  <meta name="theme-color" content="#0c0f14" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/087dfb62b8.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <title>Modelos de Regresión | Arrendamientos de Petróleo y Gas en Kansas</title>
+</head>
+
+<body data-page="regresion">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <nav class="breadcrumb"><a href="index.html">Inicio</a><i class="fas fa-chevron-right"></i>Modelos de Regresión</nav>
+        <p class="eyebrow">Modelado de relaciones</p>
+        <h1 data-i18n="t_reg_hero">Modelos de <em>regresión</em></h1>
+        <p>Regresiones simples (lineal, potencial, exponencial, logarítmica y polinómica) y regresión múltiple 3D entre variables del dataset de arrendamientos.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-wrap">
+        <div class="reg-block">
+          <h2 class="reg-sub-title">Regresión simple <span class="tag">1 variable</span></h2>
+          <p class="section-intro">Relación entre una variable independiente y una dependiente bajo distintos modelos funcionales.</p>
+          <div class="reg-grid">
+            <div class="reg-card reveal"><i class="fas fa-arrow-trend-up"></i><div><h3>Regresión Lineal</h3><small>y = a + bx</small></div></div>
+            <div class="reg-card reveal"><i class="fas fa-superscript"></i><div><h3>Regresión Potencial</h3><small>y = a·xᵇ</small></div></div>
+            <div class="reg-card reveal"><i class="fas fa-chart-line"></i><div><h3>Regresión Exponencial</h3><small>y = a·eᵇˣ</small></div></div>
+            <div class="reg-card reveal"><i class="fas fa-wave-square"></i><div><h3>Regresión Logarítmica</h3><small>y = a + b·ln(x)</small></div></div>
+            <div class="reg-card reveal"><i class="fas fa-bezier-curve"></i><div><h3>Regresión Polinómica</h3><small>y = a + bx + cx² + …</small></div></div>
+          </div>
+        </div>
+
+        <div class="reg-block">
+          <h2 class="reg-sub-title">Regresión múltiple <span class="tag">n variables</span></h2>
+          <p class="section-intro">Modelado conjunto de varias variables predictoras sobre una respuesta, con visualización tridimensional.</p>
+          <div class="reg-grid">
+            <div class="reg-card reveal"><i class="fas fa-cube"></i><div><h3>Regresión Múltiple 3D</h3><small>y = a + b₁x₁ + b₂x₂</small></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/main.js" defer></script>
+</body>
+
+</html>

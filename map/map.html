@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="description" content="BLM Oil and Gas Leases interactive map — MLRS geospatial intelligence dashboard">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
+    <link rel="stylesheet" href="css/L.Control.Locate.min.css">
+    <link rel="stylesheet" href="css/qgis2web.css">
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="css/MarkerCluster.css">
+    <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="css/leaflet.photon.css">
+    <link rel="stylesheet" href="css/leaflet-measure.css">
+    <link rel="stylesheet" href="css/styles-modern.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>BLM Oil & Gas Leases — MLRS Intelligence</title>
+</head>
+
+<body>
+    <header class="dashboard-header">
+        <h1><i class="fas fa-oil-can"></i> BLM · MLRS · Oil &amp; Gas Leases Intelligence</h1>
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-value">Interactive</span>
+                <span class="stat-label">Analytics</span>
+            </div>
+        </div>
+    </header>
+    <div id="map">
+    </div>
+    <script src="js/qgis2web_expressions.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/L.Control.Layers.Tree.min.js"></script>
+    <script src="js/L.Control.Locate.min.js"></script>
+    <script src="js/leaflet.rotatedMarker.js"></script>
+    <script src="js/leaflet.pattern.js"></script>
+    <script src="js/leaflet-hash.js"></script>
+    <script src="js/Autolinker.min.js"></script>
+    <script src="js/rbush.min.js"></script>
+    <script src="js/labelgun.min.js"></script>
+    <script src="js/labels.js"></script>
+    <script src="js/leaflet.photon.js"></script>
+    <script src="js/leaflet-measure.js"></script>
+    <script src="js/leaflet.markercluster.js"></script>
+    <script src="data/OilGasLeases_BLM.js"></script>
+    <script>
+        // Map initialization — centered on contiguous US
+        var map = L.map('map', {
+            zoomControl: false, maxZoom: 20, minZoom: 2,
+            preferCanvas: true
+        }).setView([39.5, -105.5], 4);
+
+        var canvasRenderer = L.canvas({ padding: 0.5, tolerance: 10 });
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        var autolinker = new Autolinker({ truncate: { length: 30, location: 'smart' } });
+
+        function removeEmptyRowsFromPopupContent(content, feature) {
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = content;
+            var rows = tempDiv.querySelectorAll('tr');
+            for (var i = 0; i < rows.length; i++) {
+                var td = rows[i].querySelector('td.visible-with-data');
+                var key = td ? td.id : '';
+                if (td && td.classList.contains('visible-with-data') && feature.properties[key] == null) {
+                    rows[i].parentNode.removeChild(rows[i]);
+                }
+            }
+            return tempDiv.innerHTML;
+        }
+
+        function addClassToPopupIfMedia(content, popup) {
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = content;
+            var imgTd = tempDiv.querySelector('td img');
+            if (imgTd) {
+                popup._contentNode.classList.remove('media');
+            } else {
+                popup._contentNode.classList.remove('media');
+            }
+        }
+
+        var zoomControl = L.control.zoom({ position: 'topleft' }).addTo(map);
+        L.control.locate({ locateOptions: { maxZoom: 12 } }).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'acres'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0].innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0].className += ' fas fa-ruler';
+
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {}
+
+        // Base maps
+        map.createPane('pane_CartoDBDark_0');
+        map.getPane('pane_CartoDBDark_0').style.zIndex = 400;
+        var layer_CartoDBDark_0 = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            pane: 'pane_CartoDBDark_0',
+            opacity: 1.0,
+            attribution: '&copy; <a href="https://carto.com/attributions">CARTO</a>',
+            minZoom: 2,
+            maxZoom: 20,
+        });
+        map.addLayer(layer_CartoDBDark_0);
+
+        map.createPane('pane_GoogleSatellite_1');
+        map.getPane('pane_GoogleSatellite_1').style.zIndex = 401;
+        var layer_GoogleSatellite_1 = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleSatellite_1',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 2,
+            maxZoom: 20,
+        });
+
+        // Popup builder — MLRS real field names
+        function pop_OilGasLeases_BLM(feature, layer) {
+            var props = feature.properties;
+            var adminStat = String(props['ADMIN_STAT'] || '').toLowerCase();
+            var statusClass = 'status-other';
+            if (adminStat === 'active') statusClass = 'status-active';
+            else if (adminStat === 'suspended') statusClass = 'status-suspended';
+            else if (adminStat === 'terminated') statusClass = 'status-terminated';
+            else if (adminStat === 'expired') statusClass = 'status-expired';
+            else if (adminStat === 'cancelled') statusClass = 'status-cancelled';
+
+            // Ordered fields to display in popup rows
+            var orderedKeys = [
+                'CSE_NR', 'CSE_TYPE_N', 'CMMDTY', 'FRMTN',
+                'RCRD_ACRS', 'EFF_DT', 'EXP_DT', 'SALE_DT',
+                'PRDCNG', 'CSE_DISP', 'LEG_CSE_NR', 'SF_ID',
+                'SRC', 'QLTY', 'Created', 'Modified',
+                'Shape__Are', 'Shape__Len'
+            ];
+
+            var labels = {
+                'CSE_NR': 'Case Nr.', 'CSE_TYPE_N': 'Case Type',
+                'CMMDTY': 'Commodity', 'FRMTN': 'Formation',
+                'RCRD_ACRS': 'Record Acres', 'EFF_DT': 'Effective Date',
+                'EXP_DT': 'Expiration Date', 'SALE_DT': 'Sale Date',
+                'PRDCNG': 'Producing', 'CSE_DISP': 'Disposition',
+                'LEG_CSE_NR': 'Legacy Nr.', 'SF_ID': 'Serial File ID',
+                'SRC': 'Source', 'QLTY': 'Quality',
+                'Created': 'Created', 'Modified': 'Modified',
+                'Shape__Are': 'Shape Area (m²)', 'Shape__Len': 'Shape Length (m)'
+            };
+
+            var highlightKey = 'RCRD_ACRS';
+
+            var dataRows = '';
+            orderedKeys.forEach(function(key) {
+                var rawVal = props[key];
+                if (rawVal === null || rawVal === '' || rawVal === undefined) return;
+                var displayVal = String(rawVal);
+                if (key === 'RCRD_ACRS') displayVal = Number(rawVal).toLocaleString() + ' ac';
+                if (key === 'Shape__Are' || key === 'Shape__Len') displayVal = Number(rawVal).toLocaleString();
+                var isHighlight = (key === highlightKey);
+                dataRows += `
+                <div class="popup-row">
+                    <span class="row-label">${labels[key] || key}</span>
+                    <span class="row-value${isHighlight ? ' row-highlight' : ''}">${displayVal}</span>
+                </div>`;
+            });
+
+            var cseName = props['CSE_NAME'] ? String(props['CSE_NAME']) : 'BLM Lease';
+            var state = props['GEO_STATE'] ? String(props['GEO_STATE']) : '';
+            var acres = props['RCRD_ACRS'] ? Number(props['RCRD_ACRS']).toLocaleString() + ' ac' : '';
+            var blmProd = props['BLM_PROD'] ? String(props['BLM_PROD']) : '';
+
+            var popupContent = `
+            <div class="popup-header">
+                <h3 class="popup-title"><i class="fas fa-file-contract" style="margin-right:6px;font-size:0.85em;"></i>${cseName}</h3>
+                <div class="popup-meta">
+                    ${state ? `<span class="popup-state"><i class="fas fa-map-marker-alt"></i> ${state} (${blmProd})</span>` : ''}
+                    ${acres ? `<span class="popup-size"><i class="fas fa-expand-arrows-alt"></i> ${acres}</span>` : ''}
+                </div>
+                <div class="status-badge ${statusClass}">${props['ADMIN_STAT'] || 'Unknown'}</div>
+            </div>
+            <div class="popup-body">
+                ${dataRows}
+            </div>`;
+
+            layer.on('popupopen', function (e) {
+                addClassToPopupIfMedia(popupContent, e.popup);
+            });
+            layer.bindPopup(popupContent, { maxHeight: 460 });
+        }
+
+        // Layer style by ADMIN_STAT
+        function style_OilGasLeases_BLM_0(feature) {
+            switch (String(feature.properties['ADMIN_STAT'])) {
+                case 'Active':
+                    return { radius: 9, opacity: 1, color: 'rgba(20,20,20,1.0)', dashArray: '', lineCap: 'butt', lineJoin: 'miter', weight: 1, fill: true, fillOpacity: 0.92, fillColor: 'rgba(34,197,94,1.0)', interactive: true };
+                case 'Suspended':
+                    return { radius: 9, opacity: 1, color: 'rgba(20,20,20,1.0)', dashArray: '', lineCap: 'butt', lineJoin: 'miter', weight: 1, fill: true, fillOpacity: 0.92, fillColor: 'rgba(245,158,11,1.0)', interactive: true };
+                case 'Terminated':
+                    return { radius: 9, opacity: 1, color: 'rgba(20,20,20,1.0)', dashArray: '', lineCap: 'butt', lineJoin: 'miter', weight: 1, fill: true, fillOpacity: 0.92, fillColor: 'rgba(239,68,68,1.0)', interactive: true };
+                case 'Expired':
+                    return { radius: 9, opacity: 1, color: 'rgba(20,20,20,1.0)', dashArray: '', lineCap: 'butt', lineJoin: 'miter', weight: 1, fill: true, fillOpacity: 0.92, fillColor: 'rgba(107,114,128,1.0)', interactive: true };
+                case 'Cancelled':
+                    return { radius: 9, opacity: 1, color: 'rgba(20,20,20,1.0)', dashArray: '', lineCap: 'butt', lineJoin: 'miter', weight: 1, fill: true, fillOpacity: 0.92, fillColor: 'rgba(71,85,105,1.0)', interactive: true };
+                default:
+                    return { radius: 9, opacity: 1, color: 'rgba(20,20,20,1.0)', dashArray: '', lineCap: 'butt', lineJoin: 'miter', weight: 1, fill: true, fillOpacity: 0.92, fillColor: 'rgba(148,163,184,1.0)', interactive: true };
+            }
+        }
+
+        map.createPane('pane_OilGasLeases_BLM');
+        map.getPane('pane_OilGasLeases_BLM').style.zIndex = 402;
+        map.getPane('pane_OilGasLeases_BLM').style['mix-blend-mode'] = 'normal';
+
+        var layer_OilGasLeases_BLM = new L.geoJson(json_OilGasLeases_BLM, {
+            attribution: 'BLM MLRS',
+            interactive: true,
+            dataVar: 'json_OilGasLeases_BLM',
+            layerName: 'layer_OilGasLeases_BLM',
+            pane: 'pane_OilGasLeases_BLM',
+            onEachFeature: pop_OilGasLeases_BLM,
+            pointToLayer: function (feature, latlng) {
+                var style = style_OilGasLeases_BLM_0(feature);
+                style.radius = 7.0;
+                return L.circleMarker(latlng, style);
+            },
+        });
+
+        var cluster_OilGasLeases_BLM = new L.MarkerClusterGroup({
+            showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2,
+            chunkedLoading: true,
+            chunkInterval: 50,
+            chunkDelay: 10
+        });
+        cluster_OilGasLeases_BLM.addLayer(layer_OilGasLeases_BLM);
+        bounds_group.addLayer(layer_OilGasLeases_BLM);
+        cluster_OilGasLeases_BLM.addTo(map);
+
+        // Search control
+        const url = { "Nominatim OSM": "https://nominatim.openstreetmap.org/search?format=geojson&addressdetails=1&" };
+        var photonControl = L.control.photon({
+            url: url["Nominatim OSM"],
+            feedbackLabel: '',
+            position: 'topleft',
+            includePosition: true,
+            initial: true,
+        }).addTo(map);
+        photonControl._container.childNodes[0].style.borderRadius = "10px";
+        var x = null;
+        var obj2 = {}, obj3 = {};
+        photonControl.on('selected', function (e) {
+            if (x != null) { map.removeLayer(obj3.marker); map.removeLayer(x); }
+            obj2.gcd = e.choice;
+            x = L.geoJSON(obj2.gcd).addTo(map);
+            var label = typeof obj2.gcd.properties.label === 'undefined' ? obj2.gcd.properties.display_name : obj2.gcd.properties.label;
+            obj3.marker = L.marker(x.getLayers()[0].getLatLng()).bindPopup(label).addTo(map);
+            map.setView(x.getLayers()[0].getLatLng(), 10);
+            var z = typeof e.choice.properties.label === 'undefined' ? e.choice.properties.display_name : e.choice.properties.label;
+            e.target.input.value = z;
+        });
+        var search = document.getElementsByClassName("leaflet-photon leaflet-control")[0];
+        search.classList.add("leaflet-control-search");
+        search.style.display = "flex";
+        search.style.backgroundColor = "rgba(255,255,255,0.5)";
+        var button = document.createElement("div");
+        button.id = "gcd-button-control";
+        button.className = "gcd-gl-btn fa fa-search search-button";
+        search.insertBefore(button, search.firstChild);
+        var last = search.lastChild;
+        last.style.display = "none";
+        button.addEventListener("click", function () {
+            last.style.display = (last.style.display === "none") ? "block" : "none";
+        });
+
+        // Count features by status
+        var counts = { 'Active': 0, 'Suspended': 0, 'Terminated': 0, 'Expired': 0, 'Cancelled': 0 };
+        var totalPoints = 0;
+        if (typeof json_OilGasLeases_BLM !== 'undefined' && json_OilGasLeases_BLM.features) {
+            json_OilGasLeases_BLM.features.forEach(function (f) {
+                var s = f.properties['ADMIN_STAT'];
+                if (s && counts[s] !== undefined) counts[s]++;
+                totalPoints++;
+            });
+        }
+
+        var customLegendHTML = `
+        <div class="custom-legend" id="custom-legend-container" onclick="event.stopPropagation()">
+            <div class="legend-header">
+                <span class="legend-title">BLM OIL &amp; GAS LEASES — MLRS</span>
+                <span class="legend-total" id="legend-total-count">${totalPoints.toLocaleString()}</span>
+            </div>
+            <div class="legend-list">
+                <div class="legend-item" onclick="toggleLayer('Active', event)"><i class="fas fa-check-square toggle-icon checked" data-status="Active"></i> <span class="legend-color" style="background-color:rgba(34,197,94,1.0)"></span> <span class="legend-label">Active</span> <span class="legend-count">${counts['Active'].toLocaleString()}</span></div>
+                <div class="legend-item" onclick="toggleLayer('Suspended', event)"><i class="fas fa-check-square toggle-icon checked" data-status="Suspended"></i> <span class="legend-color" style="background-color:rgba(245,158,11,1.0)"></span> <span class="legend-label">Suspended</span> <span class="legend-count">${counts['Suspended'].toLocaleString()}</span></div>
+                <div class="legend-item" onclick="toggleLayer('Terminated', event)"><i class="fas fa-check-square toggle-icon checked" data-status="Terminated"></i> <span class="legend-color" style="background-color:rgba(239,68,68,1.0)"></span> <span class="legend-label">Terminated</span> <span class="legend-count">${counts['Terminated'].toLocaleString()}</span></div>
+                <div class="legend-item" onclick="toggleLayer('Expired', event)"><i class="fas fa-check-square toggle-icon checked" data-status="Expired"></i> <span class="legend-color" style="background-color:rgba(107,114,128,1.0)"></span> <span class="legend-label">Expired</span> <span class="legend-count">${counts['Expired'].toLocaleString()}</span></div>
+                <div class="legend-item" onclick="toggleLayer('Cancelled', event)"><i class="fas fa-check-square toggle-icon checked" data-status="Cancelled"></i> <span class="legend-color" style="background-color:rgba(71,85,105,1.0)"></span> <span class="legend-label">Cancelled</span> <span class="legend-count">${counts['Cancelled'].toLocaleString()}</span></div>
+            </div>
+        </div>
+        `;
+
+        var overlaysTree = [
+            { label: customLegendHTML, layer: cluster_OilGasLeases_BLM },
+            { label: "Dark Basemap", layer: layer_CartoDBDark_0, radioGroup: 'bm' },
+            { label: "Satellite", layer: layer_GoogleSatellite_1, radioGroup: 'bm' }
+        ];
+        var lay = L.control.layers.tree(null, overlaysTree, { collapsed: false });
+        lay.addTo(map);
+
+        document.addEventListener("DOMContentLoaded", function () {
+            function newLayersListHeight() {
+                var layerScrollbarElement = document.querySelector('.leaflet-control-layers-scrollbar');
+                if (layerScrollbarElement) {
+                    var layersListElement = document.querySelector('.leaflet-control-layers-list');
+                    var originalHeight = layersListElement.style.height || window.getComputedStyle(layersListElement).height;
+                    var newHeight = parseFloat(originalHeight) - 50;
+                    layersListElement.style.height = newHeight + 'px';
+                }
+            }
+            var isLayersListExpanded = true;
+            var controlLayersElement = document.querySelector('.leaflet-control-layers');
+            var toggleLayerControl = document.querySelector('.leaflet-control-layers-toggle');
+            toggleLayerControl.addEventListener('click', function () {
+                if (isLayersListExpanded) {
+                    controlLayersElement.classList.remove('leaflet-control-layers-expanded');
+                } else {
+                    controlLayersElement.classList.add('leaflet-control-layers-expanded');
+                }
+                isLayersListExpanded = !isLayersListExpanded;
+                newLayersListHeight();
+            });
+            if (controlLayersElement) {
+                controlLayersElement.addEventListener('click', function (event) {
+                    var toggleLayerHeaderPointer = event.target.closest('.leaflet-layerstree-header-pointer span');
+                    if (toggleLayerHeaderPointer) newLayersListHeight();
+                });
+            }
+            setTimeout(function () { toggleLayerControl.click(); }, 10);
+            setTimeout(function () { toggleLayerControl.click(); }, 10);
+            var isSmallScreen = window.innerWidth < 650;
+            if (isSmallScreen) {
+                setTimeout(function () {
+                    controlLayersElement.classList.remove('leaflet-control-layers-expanded');
+                    isLayersListExpanded = !isLayersListExpanded;
+                }, 500);
+            }
+        });
+        setBounds();
+
+        // Legend filtering logic
+        var activeStatuses = { 'Active': true, 'Suspended': true, 'Terminated': true, 'Expired': true, 'Cancelled': true };
+
+        function toggleLayer(statusCategory, event) {
+            if (event) { event.stopPropagation(); event.preventDefault(); }
+            activeStatuses[statusCategory] = !activeStatuses[statusCategory];
+            var icon = document.querySelector(`.toggle-icon[data-status="${statusCategory}"]`);
+            if (activeStatuses[statusCategory]) {
+                icon.classList.remove('far', 'fa-square');
+                icon.classList.add('fas', 'fa-check-square', 'checked');
+            } else {
+                icon.classList.remove('fas', 'fa-check-square', 'checked');
+                icon.classList.add('far', 'fa-square');
+            }
+            cluster_OilGasLeases_BLM.clearLayers();
+            var filteredLayers = [];
+            var newTotal = 0;
+            layer_OilGasLeases_BLM.eachLayer(function (layer) {
+                var layerStatus = String(layer.feature.properties['ADMIN_STAT']);
+                if (activeStatuses[layerStatus]) { filteredLayers.push(layer); newTotal++; }
+            });
+            cluster_OilGasLeases_BLM.addLayers(filteredLayers);
+            document.getElementById('legend-total-count').innerText = newTotal.toLocaleString();
+            setTimeout(() => { map.invalidateSize(); }, 200);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Estadística inferencial aplicada a los arrendamientos de petróleo y gas en Kansas: pruebas de hipótesis y análisis inferencial sobre las variables del dataset." />
+  <meta name="theme-color" content="#0c0f14" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/087dfb62b8.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <title>Estadística Inferencial | Arrendamientos de Petróleo y Gas en Kansas</title>
+</head>
+
+<body data-page="inferencial">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <nav class="breadcrumb"><a href="index.html">Inicio</a><i class="fas fa-chevron-right"></i>Estadística Inferencial</nav>
+        <p class="eyebrow">Inferencia y probabilidad</p>
+        <h1 data-i18n="t_inf_hero">Estadística <em>inferencial</em></h1>
+        <p>Pruebas de hipótesis y análisis inferencial aplicado a las variables de los arrendamientos de petróleo y gas, para establecer conclusiones sobre la población a partir de la muestra del KGS.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-wrap">
+        <p class="eyebrow">Variables analizadas</p>
+        <h2 class="section-title">Variables cualitativas</h2>
+        <p class="section-intro">Atributos no numéricos sobre los que se aplican pruebas inferenciales de proporciones e independencia.</p>
+
+        <div class="var-cat">
+          <span class="vc-icon"><i class="fas fa-tag"></i></span>
+          <span class="vc-label">Nominales</span>
+          <span class="vc-desc">Sin orden jerárquico</span>
+        </div>
+        <div class="var-grid">
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-nominal">Nominal</span></div><h3>Produce Petróleo</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-nominal">Nominal</span></div><h3>Produce Gas</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-nominal">Nominal</span></div><h3>Nombre del Operador</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-nominal">Nominal</span></div><h3>Nombre del Campo</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-nominal">Nominal</span></div><h3>Formación Productora</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-nominal">Nominal</span></div><h3>Fuente de Coordenadas</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-nominal">Nominal</span></div><h3>Dirección Township</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-nominal">Nominal</span></div><h3>Dirección Range</h3></div>
+        </div>
+
+        <div class="var-cat">
+          <span class="vc-icon"><i class="fas fa-sort-amount-up"></i></span>
+          <span class="vc-label">Ordinales</span>
+          <span class="vc-desc">Con orden jerárquico definido</span>
+        </div>
+        <div class="var-grid">
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-signal var-card-icon"></i><span class="var-tag tag-ordinal">Ordinal</span></div><h3>Estado Operacional</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-chart-line var-card-icon"></i><span class="var-tag tag-ordinal">Ordinal</span></div><h3>Nivel de Producción</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-arrows-up-down var-card-icon"></i><span class="var-tag tag-ordinal">Ordinal</span></div><h3>Nivel de Profundidad</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-hourglass-half var-card-icon"></i><span class="var-tag tag-ordinal">Ordinal</span></div><h3>Etapa de Vida</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-chart-area var-card-icon"></i><span class="var-tag tag-ordinal">Ordinal</span></div><h3>Nivel de Producción Promedio</h3></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cream">
+      <div class="section-wrap">
+        <h2 class="section-title">Variables cuantitativas</h2>
+        <p class="section-intro">Mediciones numéricas sobre las que se aplican intervalos de confianza y pruebas de medias.</p>
+
+        <div class="var-cat">
+          <span class="vc-icon"><i class="fas fa-hashtag"></i></span>
+          <span class="vc-label">Discretas</span>
+          <span class="vc-desc">Valores enteros contables</span>
+        </div>
+        <div class="var-grid">
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-hashtag var-card-icon"></i><span class="var-tag tag-discrete">Discreta</span></div><h3>Identificador del Pozo</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-hashtag var-card-icon"></i><span class="var-tag tag-discrete">Discreta</span></div><h3>Código de Condado</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-hashtag var-card-icon"></i><span class="var-tag tag-discrete">Discreta</span></div><h3>Código de Estado</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-calendar-alt var-card-icon"></i><span class="var-tag tag-discrete">Discreta</span></div><h3>Años Activo</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-border-all var-card-icon"></i><span class="var-tag tag-discrete">Discreta</span></div><h3>Sección</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-map-pin var-card-icon"></i><span class="var-tag tag-discrete">Discreta</span></div><h3>Township</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-map-marked-alt var-card-icon"></i><span class="var-tag tag-discrete">Discreta</span></div><h3>Range</h3></div>
+        </div>
+
+        <div class="var-cat">
+          <span class="vc-icon"><i class="fas fa-wave-square"></i></span>
+          <span class="vc-label">Continuas</span>
+          <span class="vc-desc">Valores numéricos en rango real</span>
+        </div>
+        <div class="var-grid">
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-arrow-down-long var-card-icon"></i><span class="var-tag tag-continuous">Continua</span></div><h3>Profundidad del Pozo</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-continuous">Continua</span></div><h3>Producción Acumulada</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-chart-line var-card-icon"></i><span class="var-tag tag-continuous">Continua</span></div><h3>Producción Promedio Anual</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-map-marker-alt var-card-icon"></i><span class="var-tag tag-continuous">Continua</span></div><h3>Latitud</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-map-marker-alt var-card-icon"></i><span class="var-tag tag-continuous">Continua</span></div><h3>Longitud</h3></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/main.js" defer></script>
+</body>
+
+</html>

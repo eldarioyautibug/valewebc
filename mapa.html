@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mapa interactivo de los arrendamientos de petróleo y gas en Kansas. Distribución geográfica con filtros por estado operativo." />
+  <meta name="theme-color" content="#0c0f14" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/087dfb62b8.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <title>Mapa Interactivo | Arrendamientos de Petróleo y Gas en Kansas</title>
+</head>
+
+<body data-page="mapa">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <nav class="breadcrumb"><a href="index.html">Inicio</a><i class="fas fa-chevron-right"></i>Mapa Interactivo</nav>
+        <p class="eyebrow">Visualización geoespacial</p>
+        <h1 data-i18n="t_mapa_hero">Mapa interactivo de <em>concesiones</em></h1>
+        <p>Explora los arrendamientos de petróleo y gas en Kansas. Visualiza la distribución geográfica y consulta los registros con filtros por estado operativo.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-wrap">
+        <div class="frame reveal">
+          <div class="frame-bar">
+            <span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span>
+            <span class="frame-url">blm-mlrs.gov/interactive-map-v2</span>
+          </div>
+          <iframe src="map/map.html" style="height:760px;" title="Mapa interactivo de concesiones" allowfullscreen></iframe>
+        </div>
+        <p class="frame-note">Datos obtenidos del Kansas Geological Survey · Procesados con R y QGIS</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/main.js" defer></script>
+</body>
+
+</html>

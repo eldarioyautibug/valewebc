@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Estadística descriptiva de los arrendamientos de petróleo y gas en Kansas: metodología, tablas de variables e indicadores, y clasificación de variables." />
+  <meta name="theme-color" content="#0c0f14" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/087dfb62b8.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <title>Estadística Descriptiva | Arrendamientos de Petróleo y Gas en Kansas</title>
+</head>
+
+<body data-page="descriptiva">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <nav class="breadcrumb"><a href="index.html">Inicio</a><i class="fas fa-chevron-right"></i>Estadística Descriptiva</nav>
+        <p class="eyebrow">Caracterización de datos</p>
+        <h1 data-i18n="t_desc_hero">Estadística <em>descriptiva</em></h1>
+        <p>Metodología, tablas de variables e indicadores, y distribución de cada variable cualitativa y cuantitativa del dataset de arrendamientos.</p>
+      </div>
+    </section>
+
+    <section class="section" id="metodologia">
+      <div class="section-wrap">
+        <p class="eyebrow">Metodología estadística</p>
+        <h2 class="section-title">Población, individuo y muestra</h2>
+        <p class="section-intro">Definición formal de los elementos del estudio, en su forma textual y simbólica.</p>
+        <div class="method-grid">
+          <article class="method-card reveal">
+            <div class="method-card-head"><span class="method-card-tag">Población</span><i class="fas fa-users-viewfinder"></i></div>
+            <div><span class="method-label">Textual</span><p>Todos los arrendamientos de petróleo y gas registrados en Kansas.</p></div>
+            <div class="method-symbolic">U = {x | x ∈ Arrendamientos ∧ Ubicación(x) ∈ Kansas}</div>
+          </article>
+          <article class="method-card teal reveal">
+            <div class="method-card-head"><span class="method-card-tag">Individuo</span><i class="fas fa-layer-group"></i></div>
+            <div><span class="method-label">Textual</span><p>Cada arrendamiento de petróleo y gas registrado en la base de datos.</p></div>
+            <div class="method-symbolic">X<sub>i</sub>, donde i = 1, 2, 3, ..., +∞</div>
+          </article>
+          <article class="method-card reveal">
+            <div class="method-card-head"><span class="method-card-tag">Muestra</span><i class="fas fa-database"></i></div>
+            <div><span class="method-label">Textual</span><p>Subconjunto representativo de arrendamientos en Kansas utilizados para el análisis estadístico.</p></div>
+            <div class="method-symbolic">M = {x | x ∈ Arrendamientos ∧ Sistema(x) ∈ KGS}</div>
+          </article>
+          <article class="method-card teal reveal">
+            <div class="method-card-head"><span class="method-card-tag">Caso de estudio</span><i class="fas fa-microscope"></i></div>
+            <div><span class="method-label">Textual</span><p>Cada arrendamiento de petróleo y gas registrado en el dataset.</p></div>
+            <div class="method-symbolic">X<sub>i</sub>, donde i = 1, 2, 3, ..., 47.758</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cream" id="tablas">
+      <div class="section-wrap">
+        <p class="eyebrow">Documentación</p>
+        <h2 class="section-title">Tablas de variables e indicadores</h2>
+
+        <div class="table-scroll">
+<table class="data-table data-table--vars">
+<thead><tr><th>Nombre </th><th>Nombre Original</th><th>Descripción</th><th>Tipo</th><th>Subtipo</th><th>Dominio</th><th>Rango</th><th>Instrumento</th><th>Unidad</th><th>Escala</th></tr></thead>
+<tbody>
+<tr><td class="dt-name">Identificador del Pozo</td><td><code class="dt-code">KID</code></td><td class="dt-desc">Identificador único del pozo o registro.</td><td><span class="dt-badge dt-cuant">Cuantitativa</span></td><td><span class="var-tag tag-discrete">Discreta</span></td><td><code class="dt-set">D = { x | x ∈ ℕ }</code></td><td><code class="dt-set">R = { x ∈ ℝ | x ≥ 0 }</code></td><td>Registro administrativo</td><td>Ninguna</td><td>Nominal</td></tr>
+<tr><td class="dt-name">Profundidad del Pozo</td><td><code class="dt-code">DEPTH_OF_WELL</code></td><td class="dt-desc">Profundidad total del pozo perforado.</td><td><span class="dt-badge dt-cuant">Cuantitativa</span></td><td><span class="var-tag tag-continuous">Continua</span></td><td><code class="dt-set">D = { x | x ∈ ℝ | x ≥ 0 }</code></td><td><code class="dt-set">R = { x ∈ ℝ | 0 ≤ x ≤ 10000 }</code></td><td>Sensores / Ingeniería</td><td>Pies</td><td>Proporción</td></tr>
+<tr><td class="dt-name">Producción Acumulada</td><td><code class="dt-code">CUMULATIVE_PRODUCTION</code></td><td class="dt-desc">Producción total acumulada del pozo.</td><td><span class="dt-badge dt-cuant">Cuantitativa</span></td><td><span class="var-tag tag-continuous">Continua</span></td><td><code class="dt-set">D = { x | x ∈ ℝ | x ≥ 0 }</code></td><td><code class="dt-set">R = { x ∈ ℝ | 0 ≤ x ≤ 1.1×10^6 }</code></td><td>Registro operativo</td><td>Barriles</td><td>Proporción</td></tr>
+<tr><td class="dt-name">Producción Promedio Anual</td><td><code class="dt-code">AVG_PRODUCTION</code></td><td class="dt-desc">Producción promedio anual del pozo.</td><td><span class="dt-badge dt-cuant">Cuantitativa</span></td><td><span class="var-tag tag-continuous">Continua</span></td><td><code class="dt-set">D = { x | x ∈ ℝ | x ≥ 0 }</code></td><td><code class="dt-set">R = { x ∈ ℝ | 0 ≤ x ≤ 9×10^5 }</code></td><td>Cálculo derivado</td><td>Barriles/año</td><td>Proporción</td></tr>
+<tr><td class="dt-name">Latitud</td><td><code class="dt-code">LATITUDE</code></td><td class="dt-desc">Coordenada geográfica de latitud del pozo.</td><td><span class="dt-badge dt-cuant">Cuantitativa</span></td><td><span class="var-tag tag-continuous">Continua</span></td><td><code class="dt-set">D = { x | x ∈ ℝ }</code></td><td><code class="dt-set">R = { x ∈ ℝ | -90 ≤ x ≤ 90 }</code></td><td>GPS / SIG</td><td>Grados</td><td>Intervalo</td></tr>
+<tr><td class="dt-name">Longitud</td><td><code class="dt-code">LONGITUDE</code></td><td class="dt-desc">Coordenada geográfica de longitud del pozo.</td><td><span class="dt-badge dt-cuant">Cuantitativa</span></td><td><span class="var-tag tag-continuous">Continua</span></td><td><code class="dt-set">D = { x | x ∈ ℝ }</code></td><td><code class="dt-set">R = { x ∈ ℝ | -180 ≤ x ≤ 180 }</code></td><td>GPS / SIG</td><td>Grados</td><td>Intervalo</td></tr>
+<tr><td class="dt-name">Años Activo</td><td><code class="dt-code">YEARS_ACTIVE</code></td><td class="dt-desc">Tiempo total en años que el pozo ha estado activo.</td><td><span class="dt-badge dt-cuant">Cuantitativa</span></td><td><span class="var-tag tag-discrete">Discreta</span></td><td><code class="dt-set">D = { x | x ∈ ℕ }</code></td><td><code class="dt-set">R = { x ∈ ℝ | 1 ≤ x ≤ 100 }</code></td><td>Cálculo derivado</td><td>Años</td><td>Razón</td></tr>
+<tr><td class="dt-name">Sección</td><td><code class="dt-code">SECTION</code></td><td class="dt-desc">Sección geográfica dentro del sistema de referencia.</td><td><span class="dt-badge dt-cuant">Cuantitativa</span></td><td><span class="var-tag tag-discrete">Discreta</span></td><td><code class="dt-set">D = { x | x ∈ ℕ }</code></td><td><code class="dt-set">R = { x ∈ ℝ | 1 ≤ x ≤ 36 }</code></td><td>SIG</td><td>Ninguna</td><td>Ordinal</td></tr>
+<tr><td class="dt-name">Código de Condado</td><td><code class="dt-code">COUNTY_CODE</code></td><td class="dt-desc">Código numérico del condado.</td><td><span class="dt-badge dt-cuant">Cuantitativa</span></td><td><span class="var-tag tag-discrete">Discreta</span></td><td><code class="dt-set">D = { x | x ∈ ℕ }</code></td><td><code class="dt-set">R = { x ∈ ℝ | x ≥ 0 }</code></td><td>Registro administrativo</td><td>Ninguna</td><td>Nominal</td></tr>
+<tr><td class="dt-name">Código de Estado</td><td><code class="dt-code">STATE_CODE</code></td><td class="dt-desc">Código numérico del estado.</td><td><span class="dt-badge dt-cuant">Cuantitativa</span></td><td><span class="var-tag tag-discrete">Discreta</span></td><td><code class="dt-set">D = { x | x ∈ ℕ }</code></td><td><code class="dt-set">R = { x ∈ ℝ | x ≥ 0 }</code></td><td>Registro administrativo</td><td>Ninguna</td><td>Nominal</td></tr>
+<tr><td class="dt-name">Township</td><td><code class="dt-code">TOWNSHIP</code></td><td class="dt-desc">Unidad territorial del sistema de tierras públicas.</td><td><span class="dt-badge dt-cuant">Cuantitativa</span></td><td><span class="var-tag tag-discrete">Discreta</span></td><td><code class="dt-set">D = { x | x ∈ ℕ }</code></td><td><code class="dt-set">R = { x ∈ ℝ | x ≥ 0 }</code></td><td>SIG</td><td>Ninguna</td><td>Ordinal</td></tr>
+<tr><td class="dt-name">Range</td><td><code class="dt-code">RANGE</code></td><td class="dt-desc">Rango geográfico dentro del sistema PLSS.</td><td><span class="dt-badge dt-cuant">Cuantitativa</span></td><td><span class="var-tag tag-discrete">Discreta</span></td><td><code class="dt-set">D = { x | x ∈ ℕ }</code></td><td><code class="dt-set">R = { x ∈ ℝ | x ≥ 0 }</code></td><td>SIG</td><td>Ninguna</td><td>Ordinal</td></tr>
+<tr><td class="dt-name">Produce Petróleo</td><td><code class="dt-code">PRODUCES_OIL</code></td><td class="dt-desc">Indica si el pozo produce petróleo.</td><td><span class="dt-badge dt-cual">Cualitativa</span></td><td><span class="var-tag tag-nominal">Nominal</span></td><td><code class="dt-set">D = { x | x ∈ {0,1} }</code></td><td><code class="dt-set">R = { x ∈ {0,1} ∧ x ∈ hoja_de_datos }</code></td><td>Registro operativo</td><td>Ninguna</td><td>Nominal</td></tr>
+<tr><td class="dt-name">Produce Gas</td><td><code class="dt-code">PRODUCES_GAS</code></td><td class="dt-desc">Indica si el pozo produce gas.</td><td><span class="dt-badge dt-cual">Cualitativa</span></td><td><span class="var-tag tag-nominal">Nominal</span></td><td><code class="dt-set">D = { x | x ∈ {0,1} }</code></td><td><code class="dt-set">R = { x ∈ {0,1} ∧ x ∈ hoja_de_datos }</code></td><td>Registro operativo</td><td>Ninguna</td><td>Nominal</td></tr>
+<tr><td class="dt-name">Nombre del Operador</td><td><code class="dt-code">OPERATOR_NAME</code></td><td class="dt-desc">Empresa operadora del pozo.</td><td><span class="dt-badge dt-cual">Cualitativa</span></td><td><span class="var-tag tag-nominal">Nominal</span></td><td><code class="dt-set">D = { x | x es cadena de texto }</code></td><td><code class="dt-set">R = { x | x ∈ operadores ∧ x ∈ hoja_de_datos }</code></td><td>Registro administrativo</td><td>Ninguna</td><td>Nominal</td></tr>
+<tr><td class="dt-name">Nombre del Campo</td><td><code class="dt-code">FIELD_NAME</code></td><td class="dt-desc">Nombre del campo petrolero.</td><td><span class="dt-badge dt-cual">Cualitativa</span></td><td><span class="var-tag tag-nominal">Nominal</span></td><td><code class="dt-set">D = { x | x es cadena de texto }</code></td><td><code class="dt-set">R = { x | x ∈ campos petroleros ∧ x ∈ hoja_de_datos }</code></td><td>Registro geológico</td><td>Ninguna</td><td>Nominal</td></tr>
+<tr><td class="dt-name">Formación Productora</td><td><code class="dt-code">PRODUCING_FORMATION</code></td><td class="dt-desc">Formación geológica productora.</td><td><span class="dt-badge dt-cual">Cualitativa</span></td><td><span class="var-tag tag-nominal">Nominal</span></td><td><code class="dt-set">D = { x | x es cadena de texto }</code></td><td><code class="dt-set">R = { x | x ∈ formaciones ∧ x ∈ hoja_de_datos }</code></td><td>Geología</td><td>Ninguna</td><td>Nominal</td></tr>
+<tr><td class="dt-name">Fuente de Coordenadas</td><td><code class="dt-code">LONGITUDE_LATITUDE_SOURCE</code></td><td class="dt-desc">Origen de los datos geográficos.</td><td><span class="dt-badge dt-cual">Cualitativa</span></td><td><span class="var-tag tag-nominal">Nominal</span></td><td><code class="dt-set">D = { x | x ∈ fuentes }</code></td><td><code class="dt-set">R = { x | x ∈ fuentes ∧ x ∈ hoja_de_datos }</code></td><td>SIG</td><td>Ninguna</td><td>Nominal</td></tr>
+<tr><td class="dt-name">Nivel de Producción</td><td><code class="dt-code">PROD_LEVEL</code></td><td class="dt-desc">Categoría de producción del pozo.</td><td><span class="dt-badge dt-cual">Cualitativa</span></td><td><span class="var-tag tag-ordinal">Ordinal</span></td><td><code class="dt-set">D = { x | x ∈ {LOW, MEDIUM, HIGH} }</code></td><td><code class="dt-set">R = { x ∈ categorías ∧ x ∈ hoja_de_datos }</code></td><td>Cálculo estadístico</td><td>Ninguna</td><td>Ordinal</td></tr>
+<tr><td class="dt-name">Nivel de Profundidad</td><td><code class="dt-code">DEPTH_LEVEL</code></td><td class="dt-desc">Categoría de profundidad del pozo.</td><td><span class="dt-badge dt-cual">Cualitativa</span></td><td><span class="var-tag tag-ordinal">Ordinal</span></td><td><code class="dt-set">D = { x | x ∈ {SHALLOW, MEDIUM, DEEP} }</code></td><td><code class="dt-set">R = { x ∈ categorías ∧ x ∈ hoja_de_datos }</code></td><td>Cálculo estadístico</td><td>Ninguna</td><td>Ordinal</td></tr>
+<tr><td class="dt-name">Etapa de Vida</td><td><code class="dt-code">LIFE_STAGE</code></td><td class="dt-desc">Clasificación del ciclo de vida del pozo.</td><td><span class="dt-badge dt-cual">Cualitativa</span></td><td><span class="var-tag tag-ordinal">Ordinal</span></td><td><code class="dt-set">D = { x | x ∈ {NEW, MATURE, OLD} }</code></td><td><code class="dt-set">R = { x ∈ categorías ∧ x ∈ hoja_de_datos }</code></td><td>Cálculo temporal</td><td>Ninguna</td><td>Ordinal</td></tr>
+<tr><td class="dt-name">Nivel de Producción Promedio</td><td><code class="dt-code">AVG_PROD_LEVEL</code></td><td class="dt-desc">Categoría de producción promedio.</td><td><span class="dt-badge dt-cual">Cualitativa</span></td><td><span class="var-tag tag-ordinal">Ordinal</span></td><td><code class="dt-set">D = { x | x ∈ {LOW, MEDIUM, HIGH} }</code></td><td><code class="dt-set">R = { x ∈ categorías ∧ x ∈ hoja_de_datos }</code></td><td>Cálculo estadístico</td><td>Ninguna</td><td>Ordinal</td></tr>
+<tr><td class="dt-name">Dirección Township</td><td><code class="dt-code">TOWNSHIP_DIRECTION</code></td><td class="dt-desc">Dirección cardinal del township.</td><td><span class="dt-badge dt-cual">Cualitativa</span></td><td><span class="var-tag tag-nominal">Nominal</span></td><td><code class="dt-set">D = { x | x ∈ {N, S} }</code></td><td><code class="dt-set">R = { x ∈ {N,S} ∧ x ∈ hoja_de_datos }</code></td><td>SIG</td><td>Ninguna</td><td>Nominal</td></tr>
+<tr><td class="dt-name">Dirección Range</td><td><code class="dt-code">RANGE_DIRECTION</code></td><td class="dt-desc">Dirección cardinal del rango.</td><td><span class="dt-badge dt-cual">Cualitativa</span></td><td><span class="var-tag tag-nominal">Nominal</span></td><td><code class="dt-set">D = { x | x ∈ {E, W} }</code></td><td><code class="dt-set">R = { x ∈ {E,W} ∧ x ∈ hoja_de_datos }</code></td><td>SIG</td><td>Ninguna</td><td>Nominal</td></tr>
+</tbody></table></div>
+        <div class="btn-row">
+          <a class="btn-outline" href="https://docs.google.com/spreadsheets/d/1OR66fWlQm2hnN0__A-x27GVwRhGqg5mq/edit?usp=sharing" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Abrir tabla de variables</a>
+        </div>
+        <p class="frame-note">Fuente: Elaboración propia a partir de datos de Kansas Geological Survey (KGS), 2026.</p>
+
+        <div class="table-scroll">
+<table class="data-table data-table--ind">
+<thead>
+<tr><th rowspan="2">Variable</th><th rowspan="2">Unidad</th><th rowspan="2">Rango</th><th colspan="3" class="grp grp-1">Tendencia central</th><th colspan="2" class="grp grp-2">Dispersión</th><th colspan="3" class="grp grp-3">Forma</th></tr>
+<tr><th>Media</th><th>Mediana</th><th>Moda</th><th>Desv. est.</th><th>Coef. var.</th><th>Asimetría</th><th>Curtosis</th><th>Outliers</th></tr>
+</thead><tbody>
+<tr><td class="dt-name">Profundidad del Pozo<small>DEPTH_OF_WELL</small></td><td>pies</td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td></tr>
+<tr><td class="dt-name">Producción Acumulada<small>CUMULATIVE_PRODUCTION</small></td><td>barriles</td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td></tr>
+<tr><td class="dt-name">Producción Promedio Anual<small>AVG_PRODUCTION</small></td><td>barriles/año</td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td></tr>
+<tr><td class="dt-name">Latitud<small>LATITUDE</small></td><td>grados</td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td></tr>
+<tr><td class="dt-name">Longitud<small>LONGITUDE</small></td><td>grados</td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td></tr>
+<tr><td class="dt-name">Años Activo<small>YEARS_ACTIVE</small></td><td>años</td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td></tr>
+<tr><td class="dt-name">Sección<small>SECTION</small></td><td>—</td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td></tr>
+<tr><td class="dt-name">Código de Condado<small>COUNTY_CODE</small></td><td>—</td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td></tr>
+<tr><td class="dt-name">Código de Estado<small>STATE_CODE</small></td><td>—</td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td></tr>
+<tr><td class="dt-name">Township<small>TOWNSHIP</small></td><td>—</td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td></tr>
+<tr><td class="dt-name">Range<small>RANGE</small></td><td>—</td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td><td class="dt-num"></td></tr>
+</tbody></table></div>
+        <div class="btn-row">
+          <a class="btn-outline" href="https://drive.google.com/file/d/1LLzQ2auH5GczVqm5dj5168UI8oQvP4cO/view?usp=sharing" target="_blank" rel="noopener noreferrer"><i class="fas fa-database"></i> Dataset (47.757 registros)</a>
+        </div>
+        <p class="frame-note"></p>
+      </div>
+    </section>
+
+    <section class="section" id="variables">
+      <div class="section-wrap">
+        <p class="eyebrow">Clasificación de variables</p>
+        <h2 class="section-title">Variables cualitativas</h2>
+        <p class="section-intro">Clasificación de atributos no numéricos que definen la procedencia técnica y operativa.</p>
+
+        <div class="var-cat">
+          <span class="vc-icon"><i class="fas fa-tag"></i></span>
+          <span class="vc-label">Nominales</span>
+          <span class="vc-desc"></span>
+        </div>
+        <div class="var-grid">
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-nominal">Nominal</span></div><h3>Produce Petróleo</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-nominal">Nominal</span></div><h3>Produce Gas</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-nominal">Nominal</span></div><h3>Nombre del Operador</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-nominal">Nominal</span></div><h3>Nombre del Campo</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-nominal">Nominal</span></div><h3>Formación Productora</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-nominal">Nominal</span></div><h3>Fuente de Coordenadas</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-nominal">Nominal</span></div><h3>Dirección Township</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-nominal">Nominal</span></div><h3>Dirección Range</h3></div>
+        </div>
+
+        <div class="var-cat">
+          <span class="vc-icon"><i class="fas fa-sort-amount-up"></i></span>
+          <span class="vc-label">Ordinales</span>
+          <span class="vc-desc"></span>
+        </div>
+        <div class="var-grid">
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-signal var-card-icon"></i><span class="var-tag tag-ordinal">Ordinal</span></div><h3>Estado Operacional</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-chart-line var-card-icon"></i><span class="var-tag tag-ordinal">Ordinal</span></div><h3>Nivel de Producción</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-arrows-up-down var-card-icon"></i><span class="var-tag tag-ordinal">Ordinal</span></div><h3>Nivel de Profundidad</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-hourglass-half var-card-icon"></i><span class="var-tag tag-ordinal">Ordinal</span></div><h3>Etapa de Vida</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-chart-area var-card-icon"></i><span class="var-tag tag-ordinal">Ordinal</span></div><h3>Nivel de Producción Promedio</h3></div>
+        </div>
+
+        <h2 class="section-title" style="margin-top:72px;">Variables cuantitativas</h2>
+        <p class="section-intro">Mediciones numéricas y parámetros operativos extraídos de la base de datos de arrendamientos.</p>
+
+        <div class="var-cat">
+          <span class="vc-icon"><i class="fas fa-hashtag"></i></span>
+          <span class="vc-label">Discretas</span>
+          <span class="vc-desc"></span>
+        </div>
+        <div class="var-grid">
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-hashtag var-card-icon"></i><span class="var-tag tag-discrete">Discreta</span></div><h3>Identificador del Pozo</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-hashtag var-card-icon"></i><span class="var-tag tag-discrete">Discreta</span></div><h3>Código de Condado</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-hashtag var-card-icon"></i><span class="var-tag tag-discrete">Discreta</span></div><h3>Código de Estado</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-calendar-alt var-card-icon"></i><span class="var-tag tag-discrete">Discreta</span></div><h3>Años Activo</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-border-all var-card-icon"></i><span class="var-tag tag-discrete">Discreta</span></div><h3>Sección</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-map-pin var-card-icon"></i><span class="var-tag tag-discrete">Discreta</span></div><h3>Township</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-map-marked-alt var-card-icon"></i><span class="var-tag tag-discrete">Discreta</span></div><h3>Range</h3></div>
+        </div>
+
+        <div class="var-cat">
+          <span class="vc-icon"><i class="fas fa-wave-square"></i></span>
+          <span class="vc-label">Continuas</span>
+          <span class="vc-desc"></span>
+        </div>
+        <div class="var-grid">
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-arrow-down-long var-card-icon"></i><span class="var-tag tag-continuous">Continua</span></div><h3>Profundidad del Pozo</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-database var-card-icon"></i><span class="var-tag tag-continuous">Continua</span></div><h3>Producción Acumulada</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-chart-line var-card-icon"></i><span class="var-tag tag-continuous">Continua</span></div><h3>Producción Promedio Anual</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-map-marker-alt var-card-icon"></i><span class="var-tag tag-continuous">Continua</span></div><h3>Latitud</h3></div>
+          <div class="var-card reveal"><div class="var-card-top"><i class="fas fa-map-marker-alt var-card-icon"></i><span class="var-tag tag-continuous">Continua</span></div><h3>Longitud</h3></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/main.js" defer></script>
+</body>
+
+</html>
