@@ -74,7 +74,7 @@
             <a href="https://www.instagram.com/figempa_uce" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           </div>
           <p class="footer-uni">Universidad Central del Ecuador · FIGEMPA</p>
-          <p class="footer-copy">© 2026 Grupo 1 — Estadística y Probabilidad.<br>Todos los derechos reservados.</p>
+          <p class="footer-copy">© 2026 Grupo 6 — Estadística y Probabilidad.<br>Todos los derechos reservados.</p>
         </div>
       </div>
     </div>
