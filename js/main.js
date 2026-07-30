@@ -63,7 +63,6 @@
           <ul>
             <li><span>Almeida Fernando</span></li>
             <li><span>Araujo Valeska</span></li>
-            <li><span>Baldeón Ariel</span></li>
             <li><span>Quinchiguango Leslye</span></li>
           </ul>
         </div>
