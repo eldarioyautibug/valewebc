@@ -783,6 +783,7 @@ a.var-card:hover .vc-ext { opacity: .9; transform: translate(2px, -2px); }
 .model-card-tag.tag-exponencial { background: #e8973d; }
 .model-card-tag.tag-normal { background: #2563eb; }
 .model-card-tag.tag-lognormal { background: #059669; }
+.model-card-tag.tag-poisson { background: #dc2626; }
 .model-card-tag i { font-size: .68rem; }
 .model-card-title {
   font-family: var(--display);
